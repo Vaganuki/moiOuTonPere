@@ -1,0 +1,53 @@
+.wipContainer {
+  display: flex;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.wip {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  width: 20vmin;
+  aspect-ratio: 200/280;
+  border-radius: 2vmin;
+  margin: 0 2vmin;
+  text-align: center;
+  align-content: center;
+  box-shadow: 0 0 0 0.2vmin rgb(0, 0, 0);
+}
+
+.vert {
+  animation: sortieHaute 1s;
+}
+
+.rouge {
+  animation: sortieBasse 1s;
+}
+
+@keyframes sortieHaute {
+  40% {
+    transform: translateY(-200%);
+  }
+  41% {
+    opacity: 0;
+    transform: translateY(200%);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes sortieBasse {
+  40% {
+    transform: translateY(200%);
+  }
+  41% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
