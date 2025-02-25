@@ -7,6 +7,8 @@ const choixStock=[
     'red',
     'green',
     'blue',
+    // 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus lorem ipsum, sed pellentesque libero euismod nec. ',
+    // 'Pellentesque vitae consectetur odio, non suscipit augue.',
 ];
 let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix

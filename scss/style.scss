@@ -8,27 +8,26 @@ body{
         content: "";
         position: absolute;
         inset: 0;
-        z-index: -200;
-        filter: blur(10em);
+        z-index: -1;
+        filter: blur(5vmin);
         background-image: radial-gradient(circle at 16% 65%, 
         rgba(250, 250, 250, 0.1) 0,
         rgba(148, 148, 148, 0.1) 50%, 
         rgba(63, 63, 63, 0.1) 0,
         rgba(63, 63, 63, 0.1) 100%),
         radial-gradient(circle at 98% 57%, 
-        rgba(66, 66, 66, 0.3) 0%,
+        rgba(66, 66, 66, 0.3) 0,
         rgba(66, 66, 66, 0.3) 50%, 
-        hsla(0, 0%, 41.2%, 0.1) 0%, 
+        hsla(0, 0%, 41.2%, 0.1) 0, 
         hsla(0, 0%, 41.2%, 0.1) 100%);
     }
     &::after{
         content: "";
         position: absolute;
         inset: 0;
-        background-image: linear-gradient(
-         0deg,
-         rgba(0, 0, 0, 0.1) 50%,
-         transparent 0%   
+        background-image: linear-gradient(0deg,
+            rgba(0, 0, 0, 0.1) 50%,
+            transparent 0%   
         );
         background-size:0.35vmin 0.35vmin;
         pointer-events: none;
@@ -38,12 +37,12 @@ h1{
     font-weight: 50;
 }
 
-.wipContainer{
+.container{
     display: flex;
     margin: 0 auto;
     width: fit-content;
 }
-.wip{
+.carte{
     font-size: 2em;
     width: 20vmin;
     aspect-ratio: 200/280;
@@ -52,6 +51,14 @@ h1{
     text-align: center;
     align-content: center;
     box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
+    transition: scale 0.5s;
+    &:hover{
+        scale: 1.1;
+    }
+
+    border: 1vmin solid #fff;
+    background-repeat: repeat;
+    background-color: #1b1b1b;
 }
 
 .monte{
