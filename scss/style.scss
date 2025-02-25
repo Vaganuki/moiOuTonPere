@@ -14,16 +14,12 @@
     box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
 }
 
-.vert{
-    // background-color: green;
+.monte{
     animation: sortieHaute 1s;
 }
-.rouge{
-    // background-color: red;
+.descend{
     animation: sortieBasse 1s;
 }
-
-
 
 @keyframes sortieHaute {
     40%{
