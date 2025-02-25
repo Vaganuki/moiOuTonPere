@@ -4,11 +4,14 @@ const carteDroite=document.getElementById('select2');
 
 // Stock de nos choix
 const choixStock=[
-    'red',
-    'green',
-    'blue',
-    // 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus lorem ipsum, sed pellentesque libero euismod nec. ',
-    // 'Pellentesque vitae consectetur odio, non suscipit augue.',
+    'Moi',
+    'Ton père',
+    'Choix 3',
+    'Choix 4',
+    'Choix 5',
+    'Choix 6',
+    'Choix 7',
+    'Choix 8',
 ];
 let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
