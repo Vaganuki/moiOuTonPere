@@ -1,10 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+12');
+
+body{
+    font-family: "Jacquard 12";
+    color: whitesmoke;
+    background-color: #356d55;
+    &::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -200;
+        filter: blur(10em);
+        background-image: radial-gradient(circle at 16% 65%, 
+        rgba(250, 250, 250, 0.1) 0,
+        rgba(148, 148, 148, 0.1) 50%, 
+        rgba(63, 63, 63, 0.1) 0,
+        rgba(63, 63, 63, 0.1) 100%),
+        radial-gradient(circle at 98% 57%, 
+        rgba(66, 66, 66, 0.3) 0%,
+        rgba(66, 66, 66, 0.3) 50%, 
+        hsla(0, 0%, 41.2%, 0.1) 0%, 
+        hsla(0, 0%, 41.2%, 0.1) 100%);
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+         0deg,
+         rgba(0, 0, 0, 0.1) 50%,
+         transparent 0%   
+        );
+        background-size:0.35vmin 0.35vmin;
+        pointer-events: none;
+    }
+}
+h1{
+    font-weight: 50;
+}
+
 .wipContainer{
     display: flex;
     margin: 0 auto;
     width: fit-content;
 }
 .wip{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
     width: 20vmin;
     aspect-ratio: 200/280;
     border-radius: 2vmin;
@@ -15,10 +55,10 @@
 }
 
 .monte{
-    animation: sortieHaute 1s;
+    animation: sortieHaute 1.5s ease-out;
 }
 .descend{
-    animation: sortieBasse 1s;
+    animation: sortieBasse 1.5s ease-out;
 }
 
 @keyframes sortieHaute {

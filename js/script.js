@@ -4,9 +4,9 @@ const carteDroite=document.getElementById('select2');
 
 // Stock de nos choix
 const choixStock=[
-    'RED',
-    'BLUE',
-    'GREEN',
+    'red',
+    'green',
+    'blue',
 ];
 let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
@@ -34,7 +34,7 @@ function animChoixSuivant(choix, nonChoix){
     setTimeout(()=>{
         choix.classList.remove('monte');
         nonChoix.classList.remove('descend');
-    },1000);
+    },1500);
 };
 
 // Si l'utilisateur choisi de rester sur ses gouts
