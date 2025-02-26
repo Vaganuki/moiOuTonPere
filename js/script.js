@@ -50,9 +50,9 @@ carteDroite.addEventListener('click', ()=>{
 });
 
 reset.addEventListener('click', ()=>{
-    initialisation();
     reset.classList.add('trigger');
     setTimeout(()=>{
+        initialisation();
         reset.classList.remove('trigger');
         reset.classList.add('hide');     
         carteGauche.classList.remove('finalite');
