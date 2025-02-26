@@ -17,6 +17,7 @@ const choixStock=[
 ];
 let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
+let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
 
 // Initialisation de nos cartes
 carteGauche.innerText=choixStock[checkChoix];
@@ -24,10 +25,19 @@ carteDroite.innerText=choixStock[incrChoix];
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click',()=>{
-    animChoixSuivant(carteGauche,carteDroite,'trigger');
-    setTimeout(()=>{
-        actuelChoix();
-    },700);
+    if(checkScore<choixStock.length-1){
+        animChoixSuivant(carteGauche,carteDroite,'trigger');
+        setTimeout(()=>{
+            actuelChoix();
+        },700);
+        //ici on vérifie qu'il n'a pas fait un tour complet
+        checkScore++;
+        if(checkScore==choixStock.length-1){
+            // S'il a fait un tour complet, alors on passe à l'écran de fin
+            carteGauche.classList.add('finalite');
+            carteDroite.classList.add('hide')
+        }
+    }
 });
 
 carteDroite.addEventListener('click', ()=>{
@@ -35,6 +45,7 @@ carteDroite.addEventListener('click', ()=>{
     setTimeout(()=>{
         nouveauChoix();
     },700);
+    checkScore=0; // On relance un tour de tableau si l'utilisateur a sélectionné un nouveau préféré
 });
 
 // Fonction qui lance l'animation de la carte selon celle qui a été cliquée

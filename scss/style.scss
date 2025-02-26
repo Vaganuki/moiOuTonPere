@@ -111,6 +111,14 @@ h1{
     animation: sortieBasse 1.5s ease-out;
 }
 
+.finalite{
+    grid-column: span 2;
+}
+
+.hide{
+    display: none;
+}
+
 @keyframes sortieHaute {
     40%{
         transform: translateY(-200%);
