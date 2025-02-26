@@ -6,11 +6,13 @@ const carteDroite=document.getElementById('select2');
 const choixStock=[
     'Moi',
     'Ton père',
-    'Choix 3',
-    'Choix 4',
-    'Choix 5',
-    'Choix 6',
-    'Choix 7',
+    'Te chier dessus en pétant',
+    'Te pisser dessus en rêvant que tu es au toilette',
+    'Les pieds',
+    'Ta mère',
+    'Une bonne cara chaude au soleil',
+    'Connaître tout le lore de Lakaka land (oui tu le savais tu)',
+    'Le lore de Five Night at Freddy\'s',
     'Choix 8',
 ];
 let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
@@ -22,33 +24,37 @@ carteDroite.innerText=choixStock[incrChoix];
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click',()=>{
-    animChoixSuivant(carteGauche,carteDroite);
-    actuelChoix();
+    animChoixSuivant(carteGauche,carteDroite,'trigger');
+    setTimeout(()=>{
+        actuelChoix();
+    },700);
 });
 
 carteDroite.addEventListener('click', ()=>{
-    animChoixSuivant(carteDroite,carteGauche);
-    nouveauChoix();
+    animChoixSuivant(carteDroite,carteGauche,'monte');
+    setTimeout(()=>{
+        nouveauChoix();
+    },700);
 });
 
 // Fonction qui lance l'animation de la carte selon celle qui a été cliquée
-function animChoixSuivant(choix, nonChoix){
-    choix.classList.add('monte');
+function animChoixSuivant(choix, nonChoix, animation){
+    choix.classList.add(animation);
     nonChoix.classList.add('descend');
     // Retrait des class servant à animer
     setTimeout(()=>{
-        choix.classList.remove('monte');
+        choix.classList.remove(animation);
         nonChoix.classList.remove('descend');
     },1500);
 };
 
-// Si l'utilisateur choisi de rester sur ses gouts
+// Si l'utilisateur choisit de rester sur ses gouts
 function actuelChoix(){
     progressionChoix();
     carteDroite.innerText=choixStock[incrChoix];
 };
 
-// Si l'utilisateur choisi le nouveau choix
+// Si l'utilisateur choisit le nouveau choix
 function nouveauChoix(){
     carteGauche.innerText=choixStock[incrChoix];
     checkChoix=incrChoix;
