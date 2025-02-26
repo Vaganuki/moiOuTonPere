@@ -1,6 +1,7 @@
-// Détection de nos cartes
+// Détection de nos cartes et bouton
 const carteGauche=document.getElementById('select1');
 const carteDroite=document.getElementById('select2');
+const reset=document.getElementById('boutonReset');
 
 // Stock de nos choix
 const choixStock=[
@@ -19,9 +20,8 @@ let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
 let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
 
-// Initialisation de nos cartes
-carteGauche.innerText=choixStock[checkChoix];
-carteDroite.innerText=choixStock[incrChoix];
+initialisation();
+console.log('loop');
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click',()=>{
@@ -36,6 +36,7 @@ carteGauche.addEventListener('click',()=>{
             // S'il a fait un tour complet, alors on passe à l'écran de fin
             carteGauche.classList.add('finalite');
             carteDroite.classList.add('hide')
+            reset.classList.remove('hide');
         }
     }
 });
@@ -46,6 +47,17 @@ carteDroite.addEventListener('click', ()=>{
         nouveauChoix();
     },700);
     checkScore=0; // On relance un tour de tableau si l'utilisateur a sélectionné un nouveau préféré
+});
+
+reset.addEventListener('click', ()=>{
+    initialisation();
+    reset.classList.add('trigger');
+    setTimeout(()=>{
+        reset.classList.remove('trigger');
+        reset.classList.add('hide');     
+        carteGauche.classList.remove('finalite');
+        carteDroite.classList.remove('hide')
+    },500)
 });
 
 // Fonction qui lance l'animation de la carte selon celle qui a été cliquée
@@ -98,3 +110,13 @@ function tableauIncr(){
         }
     }
 };
+
+function initialisation(){
+    //reset des choix
+    checkChoix = 0;
+    incrChoix = 1;
+    checkScore = 0;
+    // Initialisation de nos cartes
+    carteGauche.innerText=choixStock[checkChoix];
+    carteDroite.innerText=choixStock[incrChoix];     
+}
