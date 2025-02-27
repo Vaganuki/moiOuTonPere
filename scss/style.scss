@@ -35,14 +35,54 @@ body{
     &::after{
         content: "";
         position: absolute;
+        z-index: 30;
         inset: 0;
-        animation: bgScroll 0.5s infinite;
+        animation: bgScroll 0.5s infinite, shadowTest 2s infinite alternate;
         background-size:0.35vmin 0.35vmin;
         background-image: linear-gradient(0deg,
             rgba(0, 0, 0, 0.1) 50%,
             transparent 0%   
         );
         pointer-events: none;
+        border-radius: 40%;
+        scale: 135%;
+    }
+}
+details{
+    & summary{
+        list-style: none;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        transform: scale(1.5);
+        &::-webkit-details-marker{
+            display: none;
+        }
+    }
+    &[open]{
+        text-align: right;
+        position: absolute;
+        top: 5%;
+        transform: translateY(-5%);
+        z-index: 25;
+        width: 90%;
+        padding: 1em;
+        border-radius: 1em;
+        box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
+        background-color: rgba($color: #1b1b1b, $alpha: 0.85);
+        & #moreInfoFerme{
+            transform: scale(2.5);
+        }
+        & *:not(#moreInfoFerme){
+            text-align: justify;
+        }
+        & h2{
+            border-bottom: 0.1em solid white;
+            padding-bottom: 0.75em;
+        }
+        & li{
+            margin: 0.5em 0;
+        }
     }
 }
 
@@ -60,11 +100,7 @@ h1{
     font-size: 3em;
     font-weight: 50;
     margin: 0.2em 0 1.5em;
-    z-index: 10;
-
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    z-index: 5;
 }
 
 .carte{
@@ -87,10 +123,6 @@ h1{
     border: 1vmin solid #fff;
     // background-color: #1b1b1b;
     box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
-
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 #select1{
@@ -114,11 +146,6 @@ h1{
         background-color: hsl(345, 84%, 50%);
         scale: 1.1;
     }
-
-
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 .trigger{
@@ -141,6 +168,11 @@ h1{
     display: none;
 }
 
+.unselect{
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 @keyframes sortieHaute {
     40%{
         transform: translateY(-200%);
@@ -196,4 +228,14 @@ h1{
 	45% {
 		transform: scale(1);
 	}
+}
+
+
+@keyframes shadowTest {
+    from{
+        box-shadow: inset 0 0 5em 5em rgba(0, 0, 0, 0.15);
+    }
+    to{
+        box-shadow: inset 0 0 6em 8em rgba(0, 0, 0, 0.1);
+    }
 }

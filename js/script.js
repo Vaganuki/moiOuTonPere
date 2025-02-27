@@ -21,7 +21,6 @@ let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
 let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
 
 initialisation();
-console.log('loop');
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click',()=>{
@@ -30,14 +29,14 @@ carteGauche.addEventListener('click',()=>{
         setTimeout(()=>{
             actuelChoix();
         },700);
-        //ici on vérifie qu'il n'a pas fait un tour complet
-        checkScore++;
-        if(checkScore==choixStock.length-1){
-            // S'il a fait un tour complet, alors on passe à l'écran de fin
-            carteGauche.classList.add('finalite');
-            carteDroite.classList.add('hide')
-            reset.classList.remove('hide');
-        }
+    }
+    //ici on vérifie qu'il n'a pas fait un tour complet
+    checkScore++;
+    if(checkScore==choixStock.length-1){
+        // S'il a fait un tour complet, alors on passe à l'écran de fin
+        carteGauche.classList.add('finalite');
+        carteDroite.classList.add('hide')
+        reset.classList.remove('hide');
     }
 });
 
