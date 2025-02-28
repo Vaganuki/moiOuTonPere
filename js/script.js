@@ -19,24 +19,31 @@ const choixStock=[
 let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
 let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
-
+let isAnimating = false; //Filtre anti-spam
 initialisation();
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click',()=>{
-    if(checkScore<choixStock.length-1){
-        animChoixSuivant(carteGauche,carteDroite,'trigger');
-        setTimeout(()=>{
-            actuelChoix();
-        },700);
-    }
-    //ici on vérifie qu'il n'a pas fait un tour complet
-    checkScore++;
-    if(checkScore==choixStock.length-1){
-        // S'il a fait un tour complet, alors on passe à l'écran de fin
-        carteGauche.classList.add('finalite');
-        carteDroite.classList.add('hide')
-        reset.classList.remove('hide');
+    if(isAnimating===false){
+        isAnimating=!isAnimating;
+        if(checkScore<choixStock.length-1){
+            animChoixSuivant(carteGauche,carteDroite,'trigger');
+            setTimeout(()=>{
+                actuelChoix();
+            },700);
+            // Retrait de la protection du spam click
+            setTimeout(()=>{
+                isAnimating=!isAnimating;
+            },1500); 
+        }
+        //ici on vérifie qu'il n'a pas fait un tour complet
+        checkScore++;
+        if(checkScore==choixStock.length-1){
+            // S'il a fait un tour complet, alors on passe à l'écran de fin
+            carteGauche.classList.add('finalite');
+            carteDroite.classList.add('hide')
+            reset.classList.remove('hide');
+        }
     }
 });
 
@@ -117,5 +124,5 @@ function initialisation(){
     checkScore = 0;
     // Initialisation de nos cartes
     carteGauche.innerText=choixStock[checkChoix];
-    carteDroite.innerText=choixStock[incrChoix];     
+    carteDroite.innerText=choixStock[incrChoix];  
 }
