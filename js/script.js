@@ -1,6 +1,6 @@
 // Détection de nos cartes et bouton
-const carteGauche = document.getElementById('select1');
-const carteDroite = document.getElementById('select2');
+const carteGauche = document.getElementById('carteGauche');
+const carteDroite = document.getElementById('carteDroite');
 const reset = document.getElementById('boutonReset');
 
 // Stock de nos choix

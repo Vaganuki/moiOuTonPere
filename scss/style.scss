@@ -70,6 +70,7 @@ details{
         border-radius: 1em;
         box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
         background-color: rgba($color: #1b1b1b, $alpha: 0.85);
+        line-height: 1.2em;
         & #moreInfoFerme{
             transform: scale(2.5);
         }
@@ -82,6 +83,26 @@ details{
         }
         & li{
             margin: 0.5em 0;
+        }
+        & a{
+            color: white;
+            &:hover{
+                color: rgb(220, 220, 220);
+            }
+        }
+        & .detailLink{
+            font-size: 0.8em;
+            margin: 1em 0 0;
+            & i:not(:last-child)::after{
+                content: ' •';
+                color: rgba(90, 90, 90, 1);
+            }
+            & a{
+                color: rgba(90, 90, 90, 1);
+                &:hover{
+                    color: rgba(120, 120, 120, 1);                    
+                }
+            }
         }
     }
 }
@@ -124,13 +145,13 @@ h1{
     // background-color: #1b1b1b;
     box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
 }
-
-#select1{
-    background-color: #3B4367;
-}
-
-#select2{
-    background-color: #ED3664;
+#carte{
+    &Gauche{
+        background-color: #3B4367;
+    }
+    &Droite{
+        background-color: #ED3664;
+    }
 }
 
 #boutonReset{
