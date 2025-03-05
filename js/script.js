@@ -1,10 +1,10 @@
 // Détection de nos cartes et bouton
-const carteGauche=document.getElementById('select1');
-const carteDroite=document.getElementById('select2');
-const reset=document.getElementById('boutonReset');
+const carteGauche = document.getElementById('select1');
+const carteDroite = document.getElementById('select2');
+const reset = document.getElementById('boutonReset');
 
 // Stock de nos choix
-const choixStock=[
+const choixStock = [
     'Moi',
     'Ton père',
     'Te chier dessus en pétant',
@@ -24,21 +24,21 @@ initialisation();
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click',()=>{
-    if(isAnimating===false){
-        isAnimating=!isAnimating;
+    if(isAnimating === false){
+        isAnimating = !isAnimating;
         if(checkScore<choixStock.length-1){
             animChoixSuivant(carteGauche,carteDroite,'trigger');
-            setTimeout(()=>{
+            setTimeout(() => {
                 actuelChoix();
             },700);
             // Retrait de la protection du spam click
-            setTimeout(()=>{
-                isAnimating=!isAnimating;
+            setTimeout(() => {
+                isAnimating = !isAnimating;
             },1500); 
         }
         //ici on vérifie qu'il n'a pas fait un tour complet
         checkScore++;
-        if(checkScore==choixStock.length-1){
+        if(checkScore == choixStock.length-1){
             // S'il a fait un tour complet, alors on passe à l'écran de fin
             carteGauche.classList.add('finalite');
             carteDroite.classList.add('hide')
@@ -47,17 +47,17 @@ carteGauche.addEventListener('click',()=>{
     }
 });
 
-carteDroite.addEventListener('click', ()=>{
+carteDroite.addEventListener('click', () => {
     animChoixSuivant(carteDroite,carteGauche,'monte');
-    setTimeout(()=>{
+    setTimeout(() => {
         nouveauChoix();
     },700);
-    checkScore=0; // On relance un tour de tableau si l'utilisateur a sélectionné un nouveau préféré
+    checkScore = 0; // On relance un tour de tableau si l'utilisateur a sélectionné un nouveau préféré
 });
 
-reset.addEventListener('click', ()=>{
+reset.addEventListener('click', () => {
     reset.classList.add('trigger');
-    setTimeout(()=>{
+    setTimeout(() => {
         initialisation();
         reset.classList.remove('trigger');
         reset.classList.add('hide');     
@@ -71,28 +71,28 @@ function animChoixSuivant(choix, nonChoix, animation){
     choix.classList.add(animation);
     nonChoix.classList.add('descend');
     // Retrait des class servant à animer
-    setTimeout(()=>{
+    setTimeout(() => {
         choix.classList.remove(animation);
         nonChoix.classList.remove('descend');
     },1500);
 };
 
 // Si l'utilisateur choisit de rester sur ses gouts
-function actuelChoix(){
+function actuelChoix() {
     progressionChoix();
-    carteDroite.innerText=choixStock[incrChoix];
+    carteDroite.innerText = choixStock[incrChoix];
 };
 
 // Si l'utilisateur choisit le nouveau choix
-function nouveauChoix(){
-    carteGauche.innerText=choixStock[incrChoix];
+function nouveauChoix() {
+    carteGauche.innerText = choixStock[incrChoix];
     checkChoix=incrChoix;
     progressionChoix();
     carteDroite.innerText=choixStock[incrChoix];
 };
 
 // Progression du choix en gardant deux choix différents
-function progressionChoix(){
+function progressionChoix() {
     if(incrChoix+1 !== checkChoix){
         tableauIncr();
     }
@@ -103,26 +103,26 @@ function progressionChoix(){
 };
 
 // Avancée de l'incrémentation des choix selon un check
-function tableauIncr(){
+function tableauIncr() {
     if(incrChoix < choixStock.length-1){
         incrChoix++;
     }
     else{
-        if(checkChoix!==0){
-            incrChoix=0;
+        if(checkChoix != 0){
+            incrChoix = 0;
         }
         else{
-            incrChoix=1;
+            incrChoix = 1;
         }
     }
 };
 
-function initialisation(){
+function initialisation() {
     //reset des choix
     checkChoix = 0;
     incrChoix = 1;
     checkScore = 0;
     // Initialisation de nos cartes
-    carteGauche.innerText=choixStock[checkChoix];
-    carteDroite.innerText=choixStock[incrChoix];  
+    carteGauche.innerText = choixStock[checkChoix];
+    carteDroite.innerText = choixStock[incrChoix];  
 }
