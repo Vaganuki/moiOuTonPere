@@ -4,7 +4,7 @@
         "titreSummaryBut": "Le but du jeu",
         "titreSummaryProjet": "Le projet",
         "summaryStep1": "Choisis ton option préférée",
-        "summaryStep2": "Vois si tu la préfère à toutes les autres options",
+        "summaryStep2": "Vois si tu la préfères à toutes les autres options",
         "summaryStep4": "Bien joué, tu sais maintenant ce que tu préféres",
         "projectDesc": "\"Tu préfères: moi ou ton père ?\" est un projet réalisé en self study au cours de ma formation de dev web full stack chez Technifutur. Il tire ses origines dans <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=xTkHSdDvDB0\">ce meme</a> et mon envie de développer un peu plus ma logique de code en JavaScript. Le visuel a été inspiré par un <a target=\"_blank\" href=\"https://codepen.io/twogrey/pen/qEWpoeX\">Codepen</a>, lui même inspiré du jeu Balatro. Si ce projet vous plait, n'hésitez pas à découvrir mes autres projets sur <a target=\"_blank\" href=\"https://github.com/Vaganuki\">mon github</a>!",
         "emailSend": "Envoyer un mail",
