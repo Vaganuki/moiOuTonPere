@@ -140,8 +140,10 @@ function initialisation() {
     incrChoix = 1;
     checkScore = 0;
     // Initialisation de nos cartes
-    carteGauche.innerText = choixStock[checkChoix];
-    carteDroite.innerText = choixStock[incrChoix];  
+    carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
+    carteGauche.innerHTML = traduction[savedLang][carteGauche.getAttribute('data-lang-key')]
+    carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
+    carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
 }
 
 //Moteur de traduction
