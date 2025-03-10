@@ -34,7 +34,6 @@ let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
 let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
 let isAnimating = false; //Filtre anti-spam
-initialisation();
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click',()=>{
@@ -140,7 +139,7 @@ function initialisation() {
     incrChoix = 1;
     checkScore = 0;
     // Initialisation de nos cartes
-    carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
+    carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[checkChoix]}`);
     carteGauche.innerHTML = traduction[savedLang][carteGauche.getAttribute('data-lang-key')]
     carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
@@ -182,3 +181,5 @@ function langSwap() {
         langButton.innerText="EN";
     }
 }
+
+initialisation();
