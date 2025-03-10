@@ -147,7 +147,7 @@ function initialisation() {
 
 //Moteur de traduction
 
-fetch("/locales/traduction.json")
+fetch("./locales/traduction.json")
     .then(response => response.json())
     .then(data => {
         traduction = data;
