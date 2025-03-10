@@ -1,21 +1,35 @@
+//Initialisation de notre moteur de langues
+const langButton = document.getElementById("langSwitcher");
+const elementsATraduire = document.querySelectorAll("[data-lang-key]");
+
+let traduction = {};
+
+let savedLang = localStorage.getItem("language") || "fr";
+updateLanguage(savedLang);
+if(savedLang == "en"){
+    langButton.innerText="FR";
+}
+
 // Détection de nos cartes et bouton
 const carteGauche = document.getElementById('carteGauche');
 const carteDroite = document.getElementById('carteDroite');
 const reset = document.getElementById('boutonReset');
 
-// Stock de nos choix
+// Stock de nos choix, il sert surtout à aller chercher la bonne key dans la traduction
 const choixStock = [
-    'Moi',
-    'Ton père',
-    'Te chier dessus en pétant',
-    'Te pisser dessus en rêvant que tu es au toilette',
-    'Les pieds',
-    'Ta mère',
-    'Une bonne cara chaude au soleil',
-    'Connaître tout le lore de Lakaka land (oui tu le savais tu)',
-    'Le lore de Five Night at Freddy\'s',
-    'Choix 8',
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
 ];
+
 let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
 let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
@@ -80,15 +94,18 @@ function animChoixSuivant(choix, nonChoix, animation){
 // Si l'utilisateur choisit de rester sur ses gouts
 function actuelChoix() {
     progressionChoix();
-    carteDroite.innerText = choixStock[incrChoix];
+    carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
+    carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
 };
 
 // Si l'utilisateur choisit le nouveau choix
 function nouveauChoix() {
-    carteGauche.innerText = choixStock[incrChoix];
+    carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
+    carteGauche.innerHTML = traduction[savedLang][carteGauche.getAttribute('data-lang-key')]
     checkChoix=incrChoix;
     progressionChoix();
-    carteDroite.innerText=choixStock[incrChoix];
+    carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
+    carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
 };
 
 // Progression du choix en gardant deux choix différents
@@ -125,4 +142,41 @@ function initialisation() {
     // Initialisation de nos cartes
     carteGauche.innerText = choixStock[checkChoix];
     carteDroite.innerText = choixStock[incrChoix];  
+}
+
+//Moteur de traduction
+
+fetch("/locales/traduction.json")
+    .then(response => response.json())
+    .then(data => {
+        traduction = data;
+        updateLanguage(savedLang);
+    })
+    .catch(error => console.error("Erreur de chargement des traductions :", error));
+
+langButton.addEventListener("click", () => {
+    langSwap();
+    localStorage.setItem("language", savedLang);
+    updateLanguage(savedLang);
+});
+
+function updateLanguage(lang) {
+    if (!traduction[lang]) return;
+    elementsATraduire.forEach(element => {
+        let key = element.getAttribute("data-lang-key");
+        if (traduction[lang][key]) {
+            element.innerHTML = traduction[lang][key];
+        }
+    });
+};
+
+function langSwap() {
+    if(savedLang == "fr"){
+        savedLang="en";
+        langButton.innerText="FR";
+    }
+    else{
+        savedLang="fr";
+        langButton.innerText="EN";
+    }
 }

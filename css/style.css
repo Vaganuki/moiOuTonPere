@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jacquard+12");
 @font-face {
   font-family: balatro;
-  src: url(../ressources/balatro.ttf);
+  src: url(../locales/balatro.ttf);
 }
 body {
   margin: 0;
@@ -37,15 +37,30 @@ body::after {
   scale: 135%;
 }
 
+#langSwitcher {
+  position: absolute;
+  top: 5%;
+  right: 7.5%;
+  transition: text-shadow 0.25s ease-in-out;
+}
+#langSwitcher:hover {
+  text-shadow: 0 0 0.5vmin white;
+}
+
 details summary {
   list-style: none;
   position: absolute;
   top: 5%;
   right: 5%;
   transform: scale(1.5);
+  border-radius: 50%;
+  transition: box-shadow 0.25s ease-in-out;
 }
 details summary::-webkit-details-marker {
   display: none;
+}
+details summary:hover {
+  box-shadow: 0 0 0.5vmin white;
 }
 details[open] {
   text-align: right;

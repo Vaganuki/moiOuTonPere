@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js" defer></script>
     <script src="./js/moreInfo.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu préfères moi ou ton père ? un labo de formation</title>
+    <title data-lang-key="titrePage">Tu préfères moi ou ton père ? un labo de formation</title>
 </head>
 <body>
+    <div id="langSwitcher" class="unselect">EN</div>
     <details id="moreInfo">
         <summary>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="moreInfoOuvre">
@@ -18,29 +19,28 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="moreInfoFerme">
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
         </svg>
-        <h2 class="unselect">Le but du jeu</h2>
+        <h2 class="unselect" data-lang-key="titreSummaryBut">Le but du jeu</h2>
         <ul>
-            <li>Choisis ton option préférée</li>
-            <li>Vois si tu la préfère à toutes les autres options</li>
+            <li data-lang-key="summaryStep1">Choisis ton option préférée</li>
+            <li data-lang-key="summaryStep2">Vois si tu la préfère à toutes les autres options</li>
             <li>????</li>
-            <li>Bien joué, tu sais maintenant ce que tu préféres</li>
+            <li data-lang-key="summaryStep4">Bien joué, tu sais maintenant ce que tu préféres</li>
         </ul>
-        <h2 class="unselect">Le projet</h2>
-        <p>
-            "Tu préfères: moi ou ton père ?" est un projet réalisé en self study au cours de ma formation de dev web full stack chez Technifutur. Il tire ses origines dans <a target="_blank" href="https://www.youtube.com/watch?v=xTkHSdDvDB0">ce meme</a> et mon envie de développer un peu plus ma logique de code en JavaScript. Le visuel a été inspiré par un <a target="_blank" href="https://codepen.io/twogrey/pen/qEWpoeX">Codepen</a>, lui même inspiré du jeu Balatro;.
-            Si ce projet vous plait, n'hésitez pas à découvrir mes autres projets sur <a target="_blank" href="https://github.com/Vaganuki">mon github</a>!
+        <h2 class="unselect" data-lang-key="titreSummaryProjet">Le projet</h2>
+        <p data-lang-key="projectDesc">
+            "Tu préfères: moi ou ton père ?" est un projet réalisé en self study au cours de ma formation de dev web full stack chez Technifutur. Il tire ses origines dans <a target="_blank" href="https://www.youtube.com/watch?v=xTkHSdDvDB0">ce meme</a> et mon envie de développer un peu plus ma logique de code en JavaScript. Le visuel a été inspiré par un <a target="_blank" href="https://codepen.io/twogrey/pen/qEWpoeX">Codepen</a>, lui même inspiré du jeu Balatro. Si ce projet vous plait, n'hésitez pas à découvrir mes autres projets sur <a target="_blank" href="https://github.com/Vaganuki">mon github</a>!
         </p>
         <p class="detailLink">
             <i><a href="https://github.com/Vaganuki">Github</a></i>
             <i><a href="https://instagram.com/slxxpyboi/">Instagram</a></i>
             <i><a href="https://www.linkedin.com/in/hugo-warnotte/">LinkedIn</a></i>
-            <i><a href="mailto:contact.warnotte@gmail.com">Envoyer un mail</a></i>
+            <i><a href="mailto:contact.warnotte@gmail.com" data-lang-key="emailSend">Envoyer un mail</a></i>
         </p>
     </details>
     <div class="container">
-        <h1 class="unselect">Tu préfères :</h1>
-        <div id="carteGauche" class="carte unselect">CHOIX 1</div>
-        <div id="carteDroite" class="carte unselect">CHOIX 2</div>
+        <h1 class="unselect" data-lang-key="tuPreferes">Tu préfères :</h1>
+        <div id="carteGauche" class="carte unselect" data-lang-key="carteChoix1">CHOIX 1</div>
+        <div id="carteDroite" class="carte unselect" data-lang-key="carteChoix2">CHOIX 2</div>
     </div>
     <div id="boutonReset" class="hide unselect">
         Reset
