@@ -224,6 +224,64 @@
     }    
 }
 
+@media screen and (min-width: 539px) {
+    #langSwitcher{
+        right: 10%;
+    }
+
+    .container{
+        display: grid;
+        grid-template: fit-content(1em) 1fr/ 1fr 1fr;
+
+        width: fit-content;
+        height: fit-content;
+    }
+
+    h1{
+        margin: 0.2em 0 1.5em;
+
+        font-size: 3em;
+        text-align: center;
+
+        grid-column: span 2;
+    }
+
+    .carte{
+        width: 23vmin;
+        height: inherit;
+
+        margin: 0 5vmin;
+
+        box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
+
+        transition: scale 0.5s, translate 0.2s;
+        &:hover:not(.finalite){
+            scale: 1.1;
+            translate: 0 -1.25vmin;
+        }
+    }
+
+    #boutonReset{
+        transition: scale 0.2s, background-color 0.2s;
+        &:hover{
+            background-color: hsl(345, 84%, 50%);
+            scale: 1.1;
+        }
+    }
+
+    .monte{
+        animation: sortieHaute 1.5s ease-out;
+    }
+
+    .descend{
+        animation: sortieBasse 1.5s ease-out;
+    }
+
+    .finalite{
+        grid-column: span 2;
+    }
+}
+
 @keyframes sortieHaute {
     40%{
         transform: translateY(-200%);
@@ -317,51 +375,3 @@
         box-shadow: inset 0 0 10vmin 12vmin rgba(0, 0, 0, 0.1);
     }
 }
-
-
-// -- ANCIEN CODE --
-// body{
-//     &::after{
-//         border-radius: 40%;
-//         scale: 135%;
-//     }
-// }
-// .container{
-//     display: grid;
-//     grid-template: fit-content(1em) 1fr/ 1fr 1fr;
-    //     width: fit-content;
-    //     height: fit-content;
-// }
-// h1{
-//     grid-column: span 2;
-//     text-align: center;
-//     font-size: 3em;
-//     margin: 0.2em 0 1.5em;
-// }
-
-// .carte{
-//     font-size: 2em;
-//     width: 23vmin;
-//     transition: scale 0.5s, translate 0.2s;
-//     &:hover:not(.finalite){
-//         scale: 1.1;
-//         translate: 0 -1.25vmin;
-//     }
-//     box-shadow: 0 0 0 0.2vmin rgba(0,0,0,1);
-// }
-// #boutonReset{
-//     transition: scale 0.2s, background-color 0.2s;
-//     &:hover{
-//         background-color: hsl(345, 84%, 50%);
-//         scale: 1.1;
-//     }
-// }
-// .monte{
-//     animation: sortieHaute 1.5s ease-out;
-// }
-// .descend{
-//     animation: sortieBasse 1.5s ease-out;
-// }
-// .finalite{
-//     grid-column: span 2;
-// }
