@@ -30,16 +30,15 @@ const choixStock = [
     11,
 ];
 
-let checkChoix = 0; // Pour éviter d'avoir deux fois le même choix
 let incrChoix = 1; //Pour savoir où l'on se trouve dans les choix
 let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
 let isAnimating = false; //Filtre anti-spam
 
 // Triggers du click selon la carte
 carteGauche.addEventListener('click', () => {
-    if (isAnimating === false) {
+    if (isAnimating === false) { //Protection anti-spam click
         isAnimating = !isAnimating;
-        if (checkScore < choixStock.length - 1) {
+        if (checkScore < choixStock.length - 1) { //check si on a pas atteint la fin du tableau
             animChoixSuivant(carteGauche, carteDroite, 'trigger');
             setTimeout(() => {
                 actuelChoix();
@@ -61,11 +60,30 @@ carteGauche.addEventListener('click', () => {
 });
 
 carteDroite.addEventListener('click', () => {
-    animChoixSuivant(carteDroite, carteGauche, 'monte');
-    setTimeout(() => {
-        nouveauChoix();
-    }, 700);
-    checkScore = 0; // On relance un tour de tableau si l'utilisateur a sélectionné un nouveau préféré
+    if (isAnimating === false) { //Protection anti-spam click
+        isAnimating = !isAnimating;
+        if (checkScore < choixStock.length - 1) { //check si on a pas atteint la fin du tableau
+            if (checkScore < choixStock.length - 2) {
+                animChoixSuivant(carteDroite, carteGauche, 'monte');
+            }else{
+                animChoixSuivant(carteDroite, carteGauche, 'trigger');
+            }
+            setTimeout(() => {
+                nouveauChoix();
+            }, 700);
+            //Retrait de la protection du spam clicl
+            setTimeout(() => {
+                isAnimating = !isAnimating;
+            }, 1500);
+        }
+        checkScore++;
+        if (checkScore === choixStock.length - 1) {
+            // S'il a fait un tour complet, alors on passe à l'écran de fin
+            carteGauche.classList.add('hide')
+            carteDroite.classList.add('finalite');
+            reset.classList.remove('hide');
+        }
+    }
 });
 
 reset.addEventListener('click', () => {
@@ -75,6 +93,8 @@ reset.addEventListener('click', () => {
         reset.classList.remove('trigger');
         reset.classList.add('hide');
         carteGauche.classList.remove('finalite');
+        carteGauche.classList.remove('hide');
+        carteDroite.classList.remove('finalite');
         carteDroite.classList.remove('hide')
     }, 500)
 });
@@ -92,7 +112,7 @@ function animChoixSuivant(choix, nonChoix, animation) {
 
 // Si l'utilisateur choisit de rester sur ses gouts
 function actuelChoix() {
-    progressionChoix();
+    tableauIncr();
     carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
 }
@@ -101,42 +121,23 @@ function actuelChoix() {
 function nouveauChoix() {
     carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteGauche.innerHTML = traduction[savedLang][carteGauche.getAttribute('data-lang-key')]
-    checkChoix = incrChoix;
-    progressionChoix();
+    tableauIncr();
     carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
 }
-
-// Progression du choix en gardant deux choix différents
-function progressionChoix() {
-    if (incrChoix + 1 !== checkChoix) {
-        tableauIncr();
-    } else {
-        incrChoix++;
-        tableauIncr();
-    }
-}
-
 // Avancée de l'incrémentation des choix selon un check
 function tableauIncr() {
     if (incrChoix < choixStock.length - 1) {
         incrChoix++;
-    } else {
-        if (checkChoix !== 0) {
-            incrChoix = 0;
-        } else {
-            incrChoix = 1;
-        }
     }
 }
 
 function initialisation() {
     //reset des choix
-    checkChoix = 0;
     incrChoix = 1;
     checkScore = 0;
     // Initialisation de nos cartes
-    carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[checkChoix]}`);
+    carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[checkScore]}`);
     carteGauche.innerHTML = traduction[savedLang][carteGauche.getAttribute('data-lang-key')]
     carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
