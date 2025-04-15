@@ -6,8 +6,8 @@ let traduction = {};
 
 let savedLang = localStorage.getItem("language") || "fr";
 updateLanguage(savedLang);
-if(savedLang == "en"){
-    langButton.innerText="FR";
+if (savedLang === "en") {
+    langButton.innerText = "FR";
 }
 
 // Détection de nos cartes et bouton
@@ -36,22 +36,22 @@ let checkScore = 0; // Pour checker si l'utilisateur a parcouru tout le tableau
 let isAnimating = false; //Filtre anti-spam
 
 // Triggers du click selon la carte
-carteGauche.addEventListener('click',()=>{
-    if(isAnimating === false){
+carteGauche.addEventListener('click', () => {
+    if (isAnimating === false) {
         isAnimating = !isAnimating;
-        if(checkScore<choixStock.length-1){
-            animChoixSuivant(carteGauche,carteDroite,'trigger');
+        if (checkScore < choixStock.length - 1) {
+            animChoixSuivant(carteGauche, carteDroite, 'trigger');
             setTimeout(() => {
                 actuelChoix();
-            },700);
+            }, 700);
             // Retrait de la protection du spam click
             setTimeout(() => {
                 isAnimating = !isAnimating;
-            },1500); 
+            }, 1500);
         }
         //ici on vérifie qu'il n'a pas fait un tour complet
         checkScore++;
-        if(checkScore == choixStock.length-1){
+        if (checkScore === choixStock.length - 1) {
             // S'il a fait un tour complet, alors on passe à l'écran de fin
             carteGauche.classList.add('finalite');
             carteDroite.classList.add('hide')
@@ -61,10 +61,10 @@ carteGauche.addEventListener('click',()=>{
 });
 
 carteDroite.addEventListener('click', () => {
-    animChoixSuivant(carteDroite,carteGauche,'monte');
+    animChoixSuivant(carteDroite, carteGauche, 'monte');
     setTimeout(() => {
         nouveauChoix();
-    },700);
+    }, 700);
     checkScore = 0; // On relance un tour de tableau si l'utilisateur a sélectionné un nouveau préféré
 });
 
@@ -73,65 +73,62 @@ reset.addEventListener('click', () => {
     setTimeout(() => {
         initialisation();
         reset.classList.remove('trigger');
-        reset.classList.add('hide');     
+        reset.classList.add('hide');
         carteGauche.classList.remove('finalite');
         carteDroite.classList.remove('hide')
-    },500)
+    }, 500)
 });
 
 // Fonction qui lance l'animation de la carte selon celle qui a été cliquée
-function animChoixSuivant(choix, nonChoix, animation){
+function animChoixSuivant(choix, nonChoix, animation) {
     choix.classList.add(animation);
     nonChoix.classList.add('descend');
     // Retrait des class servant à animer
     setTimeout(() => {
         choix.classList.remove(animation);
         nonChoix.classList.remove('descend');
-    },1500);
-};
+    }, 1500);
+}
 
 // Si l'utilisateur choisit de rester sur ses gouts
 function actuelChoix() {
     progressionChoix();
     carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
-};
+}
 
 // Si l'utilisateur choisit le nouveau choix
 function nouveauChoix() {
     carteGauche.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteGauche.innerHTML = traduction[savedLang][carteGauche.getAttribute('data-lang-key')]
-    checkChoix=incrChoix;
+    checkChoix = incrChoix;
     progressionChoix();
     carteDroite.setAttribute('data-lang-key', `carteChoix${choixStock[incrChoix]}`);
     carteDroite.innerHTML = traduction[savedLang][carteDroite.getAttribute('data-lang-key')]
-};
+}
 
 // Progression du choix en gardant deux choix différents
 function progressionChoix() {
-    if(incrChoix+1 !== checkChoix){
+    if (incrChoix + 1 !== checkChoix) {
         tableauIncr();
-    }
-    else{
+    } else {
         incrChoix++;
         tableauIncr();
-    }    
-};
+    }
+}
 
 // Avancée de l'incrémentation des choix selon un check
 function tableauIncr() {
-    if(incrChoix < choixStock.length-1){
+    if (incrChoix < choixStock.length - 1) {
         incrChoix++;
-    }
-    else{
-        if(checkChoix != 0){
+    } else {
+        if (checkChoix !== 0) {
             incrChoix = 0;
-        }
-        else{
+        } else {
             incrChoix = 1;
         }
     }
-};
+}
 
 function initialisation() {
     //reset des choix
@@ -169,16 +166,15 @@ function updateLanguage(lang) {
             element.innerHTML = traduction[lang][key];
         }
     });
-};
+}
 
 function langSwap() {
-    if(savedLang == "fr"){
-        savedLang="en";
-        langButton.innerText="FR";
-    }
-    else{
-        savedLang="fr";
-        langButton.innerText="EN";
+    if (savedLang === "fr") {
+        savedLang = "en";
+        langButton.innerText = "FR";
+    } else {
+        savedLang = "fr";
+        langButton.innerText = "EN";
     }
 }
 
